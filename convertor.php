@@ -47,7 +47,7 @@ foreach($tree as &$department) {
 
 $output = null;
 
-if (!(bool)$options['c']) {
+if (!isset($options['c']) || !(bool)$options['c']) {
     $output = $m->render('page', ['data' => $html]);
 }
 else {
@@ -56,3 +56,4 @@ else {
 
 //echo $output;
 file_put_contents($options['o'], $output);
+copy(__DIR__ . '/tree.css', pathinfo($options['o'])['dirname'] . '/tree.css');
