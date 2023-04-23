@@ -3,14 +3,26 @@ require_once(__DIR__ . '/entity/department.php');
 require_once(__DIR__ . '/mustache/mustache.php');
 require_once(__DIR__ . '/lib/lib.php');
 
+
+$options = getopt('i:o:c::');
+
+if (!$options || !isset($options['i']) || !isset($options['o'])) {
+    echo 'No arguments! -i path/input_file.json -o path/output_file' . PHP_EOL;
+    die;
+}
+
+if (!file_exists($options['i'])) {
+    echo 'Input file "' . $options['i'] . '" not exist or access forbidden' . PHP_EOL;
+    die;
+}
+
 use Entity\Department;
 
 $m = new Mustache_Engine([
     'loader' => new Mustache_Loader_FilesystemLoader(dirname(__FILE__) . '/template')
 ]);
 
-const PATH = __DIR__ . '/phonebook2.json';
-$json_content = file_get_contents(PATH);
+$json_content = file_get_contents($options['i']);
 
 $json = json_decode($json_content);
 
@@ -33,13 +45,14 @@ foreach($tree as &$department) {
     $html[] = $dep->get_html($m);
 }
 
-// file_put_contents('./tree.json', print_r($tree, true));
-// file_put_contents('./dict.json', print_r($dict, true));
+$output = null;
 
-$template_data = [];
-
-print_r($template_data);
-$output = $m->render('page', ['data' => $html]);
+if (!(bool)$options['c']) {
+    $output = $m->render('page', ['data' => $html]);
+}
+else {
+    $output = $m->render('content', ['data' => $html]);
+}
 
 //echo $output;
-file_put_contents(__DIR__ . '/index.html', $output);
+file_put_contents($options['o'], $output);
