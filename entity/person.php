@@ -2,7 +2,6 @@
 
 namespace Entity;
 
-use InvalidArgumentException;
 use stdClass;
 
 class Person {
@@ -15,20 +14,22 @@ class Person {
     private ?stdClass $additional_info = null;
 
     public function __construct(?stdClass $info) {
-        // if (self::is_empty($info->Name)) {
-        //     throw new InvalidArgumentException('Property "Name" is empty');
-        // }
-
-        // if (self::is_empty($info->Phone)) {
-        //     throw new InvalidArgumentException('Property "Phone" is empty');
-        // }
-
         $this->name = $info->Name;
         $this->position = $info->JobTitle;
         $this->email = $info->Email;
         $this->phone = $info->Phone;
         $this->location = $info->Location;
         $this->additional_info = $info->AdditionalInfo;
+    }
+
+    public function get_template_data() {
+        return [
+            'name' => $this->name,
+            'position' => $this->position,
+            'email' => $this->email,
+            'phone' => $this->phone,
+            'location' => $this->location
+        ];
     }
 
     private static function is_empty($val) {

@@ -1,0 +1,36 @@
+<!-- SUB-SECTION -->
+<li class="section">
+    <input type="checkbox" id="{{uniqId}}">
+    <label for="{{uniqId}}">
+        <div class="name">{{name}}</div>
+        <div class="depinfo">
+            {{#location}}Местонахождение: <div class="label">{{location}}</div>{{/location}}
+            Контактная информация: 
+            {{#phone}}<div class="label">{{phone}}</div>{{/phone}}
+            {{#email}}<div class="label">{{email}}</div>{{/email}}
+        </div>
+        {{#manager}}
+            <div class="manager">{{name}}, {{position}}</div>
+            <div class="info">
+                <!--Контактная информация: !-->
+                {{#location}}<div class="label">{{location}}</div>{{/location}}
+                {{#phone}}<div class="label">{{phone}}</div>{{/phone}}
+                {{#email}}<div class="label">{{email}}</div>{{/email}}
+            </div>
+        {{/manager}}
+        {{#employees}}
+            <div class="employee">{{name}}, {{position}}</div>
+            <div class="info">
+                Контактная информация:
+                {{#location}}<div class="label">{{location}}</div>{{/location}}
+                {{#phone}}<div class="label">{{phone}}</div>{{/phone}}
+                {{#email}}<div class="label">{{email}}</div>{{/email}}
+            </div>
+        {{/employees}}
+    </label>
+    {{#childs}}
+    <ul>
+        {{{.}}}
+    </ul>
+    {{/childs}}
+</li>

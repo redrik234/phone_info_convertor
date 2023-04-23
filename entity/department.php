@@ -5,36 +5,94 @@ require_once(__DIR__ . '/person.php');
 
 use stdClass;
 use Entity\Person;
-use InvalidArgumentException;
 
 class Department {
 
     private string $name = '';
     private ?string $code = '';
     private ?string $head_department = '';
-    private string $phone = '';
+    private ?string $phone = '';
     private ?string $email = '';
     private ?string $location = '';
     private ?array $employees = [];
+
+    private ?array $childs = [];
     private ?Person $manager = null;
 
     public function __construct(stdClass $info) {
-        if (self::is_empty($info->DepartmentName)) {
-            throw new InvalidArgumentException('Property "DepartmentName" is empty');
-        }
-        // if (self::is_empty($info->Phone)) {
-        //     throw new InvalidArgumentException('Property "Phone" is empty');
-        // }
-
         $this->name = $info->DepartmentName;
         $this->code = $info->DepartmentCode;
         $this->head_department = $info->HeadDepartment;
         $this->email = $info->Email;
+        $this->phone = $info->Phone;
         $this->location = $info->Location;
         $this->manager = $info->Manager ? new Person($info->Manager) : null;
         foreach($info->Employees as $person_info) {
             $this->employees[] = new Person($person_info);
         }
+        if (isset($info->Childs)) {
+            $this->childs = self::create_childs($info->Childs);
+        }
+    }
+
+    private static function create_childs($childs) {
+        $result = [];
+        foreach ($childs as $child) {
+            $result[] = new Department($child);
+        }
+        return $result;
+    }
+
+    public function get_html($template_engine) {
+        $html = [];
+
+        if ($this->childs) {
+            $data = $this->get_template_data();
+            $data['childs'] = self::get_childs_html($this->childs, $template_engine);
+            $data['uniqId'] = uniqid('group');
+            $html = $template_engine->render('item_with_child', $data);
+        }
+        else {
+            $html = $template_engine->render('item', $this->get_template_data());
+        }
+
+        return $html;
+    }
+
+    private static function get_childs_html($childs, $t_e) {
+        $result = [];
+        foreach ($childs as $department) {
+            $curr_childs = $department->get_childs();
+            if ($curr_childs) {
+                $template_childs = self::get_childs_html($curr_childs, $t_e);
+            }
+            else {
+                $data = $department->get_template_data();
+                $result[] =  $t_e->render('item', $data);
+                continue;
+            }
+            $data = $department->get_template_data();
+            $data['uniqId'] = uniqid('group');
+            $data['childs'] = $template_childs;
+            $html = $t_e->render('child', $data);
+            $result[] = $html;
+        }
+        return implode(PHP_EOL, $result);
+    }
+
+    public function get_template_data() {
+        return [
+            'name' => $this->name,
+            'code' => $this->code,
+            'headDepartment' => $this->head_department,
+            'email' => $this->email,
+            'phone' => $this->phone,
+            'location' => $this->location,
+            'manager' => $this->manager ? $this->manager->get_template_data() : null,
+            'employees' => array_map(function($emp) {
+                return $emp->get_template_data();
+            },$this->employees)
+        ];
     }
 
     private static function is_empty($val) {
@@ -42,6 +100,14 @@ class Department {
             return true;
         }
         return false;
+    }
+
+    public function set_child($department) {
+        $this->childs[$department->get_name()] = $department;
+    }
+
+    public function get_childs() {
+        return $this->childs;
     }
 
     public function get_name() {
