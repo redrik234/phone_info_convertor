@@ -38,20 +38,29 @@ foreach ($json as $department) {
 }
 
 $dict = [];
-$html = null;
+$html = [];
+$links = [];
+
 foreach($tree as &$department) {
     $department->Childs = search_childs($department, $department_collection);
     $dep = new Department($department);
-    $html[$dep->get_name()] = $dep->get_html($m);
+    $links[] = $dep->get_name();
+    $html[] = $dep->get_html($m);
 }
 
 $output = null;
 
 if (!isset($options['c']) || !(bool)$options['c']) {
-    $output = $m->render('page', ['data' => $html]);
+    $output = $m->render('page', [
+        'data' => $html,
+        'links' => $links
+    ]);
 }
 else {
-    $output = $m->render('content', ['data' => $html]);
+    $output = $m->render('content', [
+        'data' => $html,
+        'links' => $links
+    ]);
 }
 
 //echo $output;
