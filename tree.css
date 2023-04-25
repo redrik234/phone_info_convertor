@@ -1,4 +1,3 @@
-/* (A) LIST TO MENU */
 .tree, .section ul {
   list-style: none;
   padding: 0;
@@ -23,9 +22,11 @@
 /* (B) SUB-SECTIONS */
 /* (B1) TOGGLE SHOW/HIDE */
 .section ul {
-  display: none; 
+  display: none;
 }
-.section input:checked ~ ul { display: block; }
+.section input:checked ~ ul { 
+  display: block;
+}
 
 /* (B2) HIDE CHECKBOX */
 .section input[type=checkbox] { display: none; }
@@ -54,7 +55,7 @@ li.section {
   background: #f0f0f0;
 }
 
-li.section:before {
+ul li.section:before {
   background-color: #f0f0f0;
 }
 
@@ -79,52 +80,62 @@ li.section:before {
 }
 
 /*Надписи*/
-/*div {
-display:inline-block;
-}*/
 .name {
 	font-size: 18px;
 	font-weight: bold;
 	display:grid;
+	border-bottom: 2px solid rgba(0,0,0,.1);
+	padding: 0 0 5px 0;
 }
 
 .manager {
-	font-size: 18px;
-	margin: 10px 30px 0;
-	display:grid;
+	font-size: 16px;
+	font-weight: 550;
+	margin: 10px 0 5px 30px;
+	display:inline-block;
+}
+
+.managerjob {
+	font-size: 16px;
+	display:inline-block;
 }
 
 .employee {
-	margin: 10px 30px 0;
-	display:grid;
-	font-size: 16px;
+	margin: 10px 0 5px 40px;
+	display:inline-block;
+	font-size: 14px;
+	color: #3d3d3d;
+}
+
+.employeejob {
+	display:inline-block;
+	font-size: 14px;
 	color: #3d3d3d;
 }
 
 .info{
-	font-size: 14px;
+	font-size: 12px;
 	margin: 2px 30px 0;
 	color: #7a7a7a;
-	display:inline-block;
+}
+
+.info_employee{
+	font-size: 12px;
+	margin: 2px 40px 0;
+	color: #7a7a7a;
 }
 
 .depinfo{
-	font-size: 16px;
-	margin: 5px 30px 0;
+	font-size: 14px;
+	margin: 7px 0 0;
 	color: #7a7a7a;
 }
 
 .label {
-	font-size: 14px;
+	font-size: 12px;
 	color: #fff;
 	background: #00757c;
-	padding: 3px 8px;
-	border-radius: 8px;
+	padding: 2px 4px;
+	border-radius: 4px;
 	display:inline-block;
 }
-
-/*a:link, a:visited, a:hover, a:active {
-	font-size: 16px;
-	color: #fff;
-	text-decoration: none;
-}*/

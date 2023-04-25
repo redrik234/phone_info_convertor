@@ -53,6 +53,9 @@ class Department {
             $html = $template_engine->render('item_with_child', $data);
         }
         else {
+            if ($this->is_empty()) {
+                return null;
+            }
             $html = $template_engine->render('item', $this->get_template_data());
         }
 
@@ -68,14 +71,18 @@ class Department {
             }
             else {
                 $data = $department->get_template_data();
-                $result[] =  $t_e->render('item', $data);
+                if (!$department->is_empty()) {
+                    $result[] =  $t_e->render('item', $data);
+                }
                 continue;
             }
-            $data = $department->get_template_data();
-            $data['uniqId'] = uniqid('group');
-            $data['childs'] = $template_childs;
-            $html = $t_e->render('child', $data);
-            $result[] = $html;
+            if (!$department->is_empty()) {
+                $data = $department->get_template_data();
+                $data['uniqId'] = uniqid('group');
+                $data['childs'] = $template_childs;
+                $html = $t_e->render('child', $data);
+                $result[] = $html;
+            }
         }
         return implode(PHP_EOL, $result);
     }
@@ -95,8 +102,11 @@ class Department {
         ];
     }
 
-    private static function is_empty($val) {
-        if (empty($val)) {
+    public function is_empty() {
+        if (!$this->phone && !$this->email 
+        && !$this->location && !$this->manager
+        && empty($this->employees
+        && empty($this->childs))) {
             return true;
         }
         return false;

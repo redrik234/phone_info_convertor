@@ -1,30 +1,87 @@
 <!-- SUB-SECTION -->
 <li class="section">
-    <input type="checkbox" id="{{uniqId}}">
+    <input type="checkbox" id="{{uniqId}}" checked>
     <label for="{{uniqId}}">
+        <a id="{{name}}">
         <div class="name">{{name}}</div>
+        </a>
         <div class="depinfo">
-            {{#location}}Местонахождение: <div class="label">{{location}}</div>{{/location}}
-            Контактная информация:
-            {{#phone}}<div class="label">{{phone}}</div>{{/phone}}
-            {{#email}}<div class="label">{{email}}</div>{{/email}}
+                {{#location}}
+                    Местонахождение: 
+                    <div class="label">
+                        {{location}}
+                    </div>
+                {{/location}}
+                Контактная информация:
+                {{#phone}}
+                    <div class="label">
+                        {{phone}}
+                    </div>
+                {{/phone}}
+                {{#email}}
+                    <div class="label">
+                        {{email}}
+                    </div>
+                {{/email}}
         </div>
         {{#manager}}
-            <div class="manager">{{name}}, {{position}}</div>
+            <div class="manager">
+                {{name}},
+            </div>
+            <div class="managerjob">
+                {{position}}
+            </div>
+            {{#add_info}}
+                <div class="managerjob">
+                    ({{add_info}})
+                </div>
+            {{/add_info}}
             <div class="info">
-                <!--Контактная информация: !-->
-                {{#location}}<div class="label">{{location}}</div>{{/location}}
-                {{#phone}}<div class="label">{{phone}}</div>{{/phone}}
-                {{#email}}<div class="label">{{email}}</div>{{/email}}
+                {{#location}}
+                    <div class="label">
+                        {{location}}
+                    </div>
+                {{/location}}
+                {{#phone}}
+                    <div class="label">
+                        {{phone}}
+                    </div>
+                {{/phone}}
+                {{#email}}
+                    <div class="label">
+                        {{email}}
+                    </div>
+                {{/email}}
             </div>
         {{/manager}}
         {{#employees}}
-            <div class="employee">{{name}}, {{position}}</div>
+            <div class="employee">
+                {{name}},
+            </div>
+            <div class="employeejob">
+                {{position}}
+            </div>
+            {{#add_info}}
+                <div class="employeejob">
+                    ({{add_info}})
+                </div>
+            {{/add_info}}
             <div class="info">
-                Контактная информация:
-                {{#location}}<div class="label">{{location}}</div>{{/location}}
-                {{#phone}}<div class="label">{{phone}}</div>{{/phone}}
-                {{#email}}<div class="label">{{email}}</div>{{/email}}
+                {{#location}}
+                    <div class="label">
+                        {{location}}
+                    </div>
+                {{/location}}
+                {{#phone}}
+                    <div class="label">
+                        {{phone}}
+                    </div>
+                {{/phone}}
+                {{#email}}
+                    <div class="label">
+                        {{email}}
+                    </div>
+                {{/email}}
             </div>
         {{/employees}}
     </label>

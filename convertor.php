@@ -42,7 +42,7 @@ $html = null;
 foreach($tree as &$department) {
     $department->Childs = search_childs($department, $department_collection);
     $dep = new Department($department);
-    $html[] = $dep->get_html($m);
+    $html[$dep->get_name()] = $dep->get_html($m);
 }
 
 $output = null;

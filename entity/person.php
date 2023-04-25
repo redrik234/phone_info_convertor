@@ -11,7 +11,7 @@ class Person {
     private ?string $email = '';
     private ?string $phone = '';
     private ?string $location = '';
-    private ?stdClass $additional_info = null;
+    private ?string $additional_info = '';
 
     public function __construct(?stdClass $info) {
         $this->name = $info->Name;
@@ -28,7 +28,8 @@ class Person {
             'position' => $this->position,
             'email' => $this->email,
             'phone' => $this->phone,
-            'location' => $this->location
+            'location' => $this->location,
+            'add_info' => $this->additional_info
         ];
     }
 
