@@ -1,3 +1,22 @@
+.phone-contacts {
+	border: 2px dashed #00757c;
+	border-radius: 10px;
+	padding: 20px;
+	float: right;
+	text-align: right;
+	font-size: 15px
+	display: inline-block;
+}
+
+.col-p-5.col-mm-10{
+	display: inline-block;
+}
+
+.phone-contacts h3 {
+	margin-top: 0;
+}
+
+  /* (A) LIST TO MENU */
 .tree, .section ul {
   list-style: none;
   padding: 0;
@@ -90,8 +109,8 @@ ul li.section:before {
 
 .manager {
 	font-size: 16px;
-	font-weight: 550;
-	margin: 10px 0 5px 30px;
+	font-weight: bold;
+	margin: 10px 0 5px 15px;
 	display:inline-block;
 }
 
@@ -101,7 +120,7 @@ ul li.section:before {
 }
 
 .employee {
-	margin: 10px 0 5px 40px;
+	margin: 10px 0 5px 35px;
 	display:inline-block;
 	font-size: 14px;
 	color: #3d3d3d;
@@ -115,13 +134,13 @@ ul li.section:before {
 
 .info{
 	font-size: 12px;
-	margin: 2px 30px 0;
+	margin: 0 15px 0;
 	color: #7a7a7a;
 }
 
 .info_employee{
 	font-size: 12px;
-	margin: 2px 40px 0;
+	margin: 0 35px 0;
 	color: #7a7a7a;
 }
 
@@ -138,4 +157,182 @@ ul li.section:before {
 	padding: 2px 4px;
 	border-radius: 4px;
 	display:inline-block;
+}
+
+.head_info{
+  width: 100%;
+  margin: 5px;
+}
+
+.head_info_cell{
+  border: 0px;
+}
+
+.hashtag{
+  text-decoration: none;
+  font-size: 14px;
+  list-style-type: none;
+}
+
+@media screen and (max-width: 1023px) {
+	.name {
+		font-size: 16px;
+		padding: 0 0 4px 0;
+	}
+	.depinfo{
+		font-size: 12px;
+		margin: 5px 0 0;
+	}
+	.label {
+		font-size: 11px;
+		padding: 2px 3px;
+		border-radius: 3px;
+	}
+	.manager {
+		font-size: 14px;
+		margin: 8px 0 3px 12px;
+	}
+
+	.managerjob {
+		font-size: 14px;
+	}
+
+	.employee {
+		margin: 6 0 3px 30px;
+		font-size: 12px;
+	}
+
+	.employeejob {
+		font-size: 12px;
+	}
+	
+	.info{
+		font-size: 12px;
+		margin: 0 12px 0;
+
+	}
+
+	.info_employee{
+		font-size: 12px;
+		margin: 0 30px 0;
+	}
+	
+	.tree li {
+	  padding: 10px 7px;
+	}
+	
+	.section ul li { 
+	  margin: 8px;
+	}
+}
+
+@media screen and (max-width: 767px) {
+	.name {
+		font-size: 14px;
+		padding: 0 0 3px 0;
+	}
+	.depinfo{
+		font-size: 11px;
+		margin: 3px 0 0;
+	}
+	.label {
+		font-size: 10px;
+		padding: 1px 2px;
+		border-radius: 2px;
+	}
+	.manager {
+		font-size: 12px;
+		margin: 6px 0 1px 8px;
+	}
+
+	.managerjob {
+		font-size: 12px;
+	}
+
+	.employee {
+		margin: 4px 0 1px 20px;
+		font-size: 11px;
+	}
+
+	.employeejob {
+		font-size: 11px;
+	}
+	
+	.info{
+		font-size: 8px;
+		margin: 0 8px 0;
+
+	}
+
+	.info_employee{
+		font-size: 11px;
+		margin: 0 20px 0;
+	}
+	
+	.tree li {
+	  padding: 7px 4px;
+	}
+	
+	.section ul li { 
+	  margin: 5px;
+	}
+}
+
+@media screen and (max-width: 479px) {
+	.name {
+		font-size: 12px;
+		padding: 0 0 3px 0;
+	}
+	.depinfo{
+		font-size: 10px;
+		margin: 3px 0 0;
+	}
+	.label {
+		font-size: 9px;
+		padding: 1px 1px;
+		border-radius: 1px;
+	}
+	.manager {
+		font-size: 11px;
+		margin: 4px 0 0 5px;
+	}
+
+	.managerjob {
+		font-size: 11px;
+	}
+
+	.employee {
+		margin: 0 0 0 15px;
+		font-size: 10px;
+	}
+
+	.employeejob {
+		font-size: 10px;
+	}
+	
+	.info{
+		font-size: 5px;
+		margin: 0 5px 0;
+
+	}
+
+	.info_employee{
+		font-size: 9px;
+		margin: 0 15px 0;
+	}
+	
+	.tree li {
+	  padding: 4px 2px;
+	}
+	
+	.section ul li { 
+	  margin: 2px;
+	}
+}
+
+
+.no-link {
+	text-decoration: none;
+	color: #fff;
+	font-size: 12px;
 }

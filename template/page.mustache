@@ -5,12 +5,14 @@
         <link rel="stylesheet" href="tree.css">
     </head>
     <body>
+	<div class="grid">
+		<div class="col-p-5 col-mm-10">
         <ul class="hashtag-list">
             {{#links}}
-                <li><a href="#{{.}}">{{.}}</a></li>
+                <a href="#{{.}}" class="hashtag"><li>{{.}}</li></a>
             {{/links}}
         </ul>
-
+		</div>
         <div class="col-p-5 col-mm-10">
             <div class="phone-contacts">
                 <h3>Телефоны специального назначения</h3>
@@ -24,6 +26,7 @@
                 </p>
             </div>
         </div>
+	</div>	
         <ul class="tree">
             {{#data}}
                 {{{.}}}

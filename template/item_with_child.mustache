@@ -2,8 +2,8 @@
     <input type="checkbox" id="{{uniqId}}" checked>
     <label for="{{uniqId}}">
     <div class="depinfo">
-        <a id="{{name}}">
-            <div class="{{name}}">
+        <a>
+            <div class="name" id="{{name}}">
                 {{name}}
             </div>
         </a>
@@ -22,7 +22,7 @@
             {{/phone}}
             {{#email}}
                 <div class="label">
-                    {{email}}
+                    <a href="mailto:{{email}}" class="no-link">{{email}}</a>
                 </div>
             {{/email}}
         </div>
@@ -52,7 +52,7 @@
             {{/phone}}
             {{#email}}
                 <div class="label">
-                    {{email}}
+                    <a href="mailto:{{email}}" class="no-link">{{email}}</a>
                 </div>
             {{/email}}
         </div>
@@ -82,7 +82,7 @@
             {{/phone}}
             {{#email}}
                 <div class="label">
-                    {{email}}
+                    <a href="mailto:{{email}}" class="no-link">{{email}}</a>
                 </div>
             {{/email}}
         </div>

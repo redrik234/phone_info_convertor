@@ -1,6 +1,6 @@
 <li class="section">
-    <a id="{{name}}">
-        <div class="name">{{name}}</div>
+    <a >
+        <div class="name" id="{{name}}">{{name}}</div>
     </a>
     <div class="depinfo">
             {{#location}}
@@ -17,7 +17,7 @@
             {{/phone}}
             {{#email}}
                 <div class="label">
-                    {{email}}
+                    <a href="mailto:{{email}}" class="no-link">{{email}}</a>
                 </div>
             {{/email}}
     </div>
@@ -46,7 +46,7 @@
             {{/phone}}
             {{#email}}
                 <div class="label">
-                    {{email}}
+                    <a href="mailto:{{email}}" class="no-link">{{email}}</a>
                 </div>
             {{/email}}
         </div>
@@ -63,7 +63,7 @@
                 ({{add_info}})
             </div>
         {{/add_info}}
-        <div class="info">
+        <div class="info_employee">
             {{#location}}
                 <div class="label">
                     {{location}}
@@ -76,7 +76,7 @@
             {{/phone}}
             {{#email}}
                 <div class="label">
-                    {{email}}
+                    <a href="mailto:{{email}}" class="no-link">{{email}}</a>
                 </div>
             {{/email}}
         </div>
