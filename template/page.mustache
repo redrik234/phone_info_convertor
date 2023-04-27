@@ -14,19 +14,119 @@
         </ul>
 		</div>
         <div class="col-p-5 col-mm-10">
-            <div class="phone-contacts">
-                <h3>Телефоны специального назначения</h3>
-                <p>Cправочная: <code>68-68-09</code></p>
-                <p>Ответственный дежурный по университету: <code>68-78-01</code></p>
-                <p>Дежурный слесарь: <code>68-68-44</code></p>
-                <p>
-                    Дежурные электрики:<br>
-                    <span class="fz13">Учебный корпус №1</span> — <code>68-60-17</code><br>
-                    <span class="fz13">Учебный корпус №3</span> — <code>68-28-08</code>
-                </p>
-            </div>
-        </div>
+				<div class="phone-contacts">
+					<h3>Телефоны специального назначения</h3>
+					<p>Cправочная: <a href="tel:+78362686809"><code>68-68-09</code></a></p>
+					<p>Ответственный дежурный по университету: <a href="tel:+78362687801"><code>68-78-01</code></a></p>
+					<p>Дежурный слесарь: <a href="tel:+78362686844"><code>68-68-44</code></a></p>
+					<p>
+						Дежурные электрики:<br>
+						<span class="fz13">Учебный корпус №1</span> — <a href="tel:+78362686017"><code>68-60-17</code></a><br>
+						<span class="fz13">Учебный корпус №3</span> — <a href="tel:+78362682808"><code>68-28-08</code></a>
+					</p>
+				</div>
+			</div>
 	</div>	
+	
+	<form>
+		<div class="box">
+			<div class="container">
+			  <input class="place_for_search" type="text" id="text-to-find" value="" placeholder="Поиск по справочнику..."> 
+			  <input class="button_for_search" type="submit" onclick="javascript: FindOnPage('text-to-find',true); return false;" value="Найти на странице" title="Найти на странице">
+			  <input class="button_for_turn_back" type="button" onclick="javascript: FindOnPage('text-to-find',false); return false;" value="Очистить" title="Очистить">
+			</div>
+		</div>
+	</form>
+		
+	<script>
+	var input;
+	
+	function unhide_li(elem) {
+		while (elem.tagName.toUpperCase() != "LI")
+			elem = elem.parentNode;
+		elem.classList.remove('hidden_item');
+		return elem;
+	}
+
+	function FindOnPage(name, status) {
+
+		input = document.getElementById(name).value; //получаем значение из поля в html
+		if(input.length<3&&status==true) {
+			alert('Для поиска вы должны ввести три или более символов');
+		}
+			
+			if(input.length>=3 && status){
+				let nonhidden = document.querySelectorAll('.section');
+				for (let elem of nonhidden)
+				{
+					elem.classList.add('hidden_item');
+					let inner_elems = elem.getElementsByTagName('LI');
+					for (let inner_elem of inner_elems)
+						inner_elem.classList.add('hidden_item');
+				}
+				
+				found = false;
+				
+				let managers = document.querySelectorAll('.manager');
+				for (let elem of managers)
+				{
+					if (elem.innerText.toUpperCase().indexOf(input.toUpperCase()) >= 0)
+					{
+						let li_elem = unhide_li(elem);
+						while (!li_elem.parentNode.classList.contains('tree'))
+							li_elem = unhide_li(li_elem.parentNode);
+						found = true;
+					}
+				}
+				
+				if (!found)
+				{
+					let names = document.querySelectorAll('.name');
+					for (let elem of names)
+					{
+						if (elem.innerText.toUpperCase().indexOf(input.toUpperCase()) >= 0)
+						{
+							let li_elem = unhide_li(elem);
+							while (!li_elem.parentNode.classList.contains('tree'))
+								li_elem = unhide_li(li_elem.parentNode);
+							found = true;
+						}
+					}
+				}
+				
+				if (!found)
+				{
+					let employees = document.querySelectorAll('.employee');
+					for (let elem of employees)
+					{
+						if (elem.innerText.toUpperCase().indexOf(input.toUpperCase()) >= 0)
+						{
+							let li_elem = unhide_li(elem);
+							while (!li_elem.parentNode.classList.contains('tree'))
+								li_elem = unhide_li(li_elem.parentNode);
+							found = true;
+						}
+					}
+				}
+				
+				if (!found)
+				{
+					let hidden = document.querySelectorAll('.hidden_item');
+					for (let elem of hidden)
+						elem.classList.remove('hidden_item');
+					alert('Совпадения не найдены!');
+				}
+		}
+		
+		if(!status) { 
+			let hidden = document.querySelectorAll('.hidden_item');
+			for (let elem of hidden)
+				elem.classList.remove('hidden_item');
+			document.getElementById(name).value = ''; 
+		}
+	}
+	</script>
+	
         <ul class="tree">
             {{#data}}
                 {{{.}}}

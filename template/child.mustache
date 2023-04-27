@@ -12,10 +12,12 @@
                         {{location}}
                     </div>
                 {{/location}}
+		</div>
+		<div class="depinfo">
                 Контактная информация:
                 {{#phone}}
                     <div class="label">
-                        {{phone}}
+                        <a href="tel:{{phone}}" class="no-link">{{phone}}</a>
                     </div>
                 {{/phone}}
                 {{#email}}
@@ -25,17 +27,19 @@
                 {{/email}}
         </div>
         {{#manager}}
-            <div class="manager">
-                {{name}},
-            </div>
-            <div class="managerjob">
-                {{position}}
-            </div>
-            {{#add_info}}
-                <div class="managerjob">
-                    ({{add_info}})
-                </div>
-            {{/add_info}}
+			<div>
+				<div class="manager">
+					{{name}},
+				</div>
+				<div class="managerjob">
+					{{position}}
+				</div>
+				{{#add_info}}
+					<div class="managerjob">
+						({{add_info}})
+					</div>
+				{{/add_info}}
+			</div>
             <div class="info">
                 {{#location}}
                     <div class="label">
@@ -44,7 +48,7 @@
                 {{/location}}
                 {{#phone}}
                     <div class="label">
-                        {{phone}}
+                        <a href="tel:{{phone}}" class="no-link">{{phone}}</a>
                     </div>
                 {{/phone}}
                 {{#email}}
@@ -74,7 +78,7 @@
                 {{/location}}
                 {{#phone}}
                     <div class="label">
-                        {{phone}}
+                        <a href="tel:{{phone}}" class="no-link">{{phone}}</a>
                     </div>
                 {{/phone}}
                 {{#email}}
