@@ -30,10 +30,11 @@
 	
 	<form>
 		<div class="box">
-			<div class="container">
-			  <input class="place_for_search" type="text" id="text-to-find" value="" placeholder="Поиск по справочнику..."> 
-			  <input class="button_for_search" type="submit" onclick="javascript: FindOnPage('text-to-find',true); return false;" value="Найти на странице" title="Найти на странице">
-			  <input class="button_for_turn_back" type="button" onclick="javascript: FindOnPage('text-to-find',false); return false;" value="Очистить" title="Очистить">
+			<div class="container_searching_form">
+			  <input class="place_for_search" type="text" id="text-to-find" value="" placeholder="Поиск по справочнику..." oninput="javascript: FindOnPage('text-to-find',true, false); return false;">
+			  <input class="button_for_search_hidden" type="submit" onclick="javascript: FindOnPage('text-to-find',true, true); return false;" value="Найти на странице" title="Найти на странице">
+			  <div><img class="button_for_search" onclick="javascript: FindOnPage('text-to-find',true, true); return false;" title="Найти на странице"></div>
+			  <div><img class="button_for_turn_back" onclick="javascript: FindOnPage('text-to-find',false, true); return false;" title="Очистить"></div>
 			</div>
 		</div>
 	</form>
@@ -48,14 +49,15 @@
 		return elem;
 	}
 
-	function FindOnPage(name, status) {
+	function FindOnPage(name, status, submitted) {
 
 		input = document.getElementById(name).value; //получаем значение из поля в html
-		if(input.length<3&&status==true) {
-			alert('Для поиска вы должны ввести три или более символов');
+		found = false;
+		if(input.length<1 && status==true && submitted==true) {
+			alert('Для поиска вы должны ввести один или более символов');
 		}
 			
-			if(input.length>=3 && status){
+			if(input.length>=1 && status){
 				let nonhidden = document.querySelectorAll('.section');
 				for (let elem of nonhidden)
 				{
@@ -64,8 +66,6 @@
 					for (let inner_elem of inner_elems)
 						inner_elem.classList.add('hidden_item');
 				}
-				
-				found = false;
 				
 				let managers = document.querySelectorAll('.manager');
 				for (let elem of managers)
@@ -109,7 +109,7 @@
 					}
 				}
 				
-				if (!found)
+				if (!found && submitted == true)
 				{
 					let hidden = document.querySelectorAll('.hidden_item');
 					for (let elem of hidden)
@@ -118,7 +118,7 @@
 				}
 		}
 		
-		if(!status) { 
+		if(!status || (submitted == true && found == false)) { 
 			let hidden = document.querySelectorAll('.hidden_item');
 			for (let elem of hidden)
 				elem.classList.remove('hidden_item');
