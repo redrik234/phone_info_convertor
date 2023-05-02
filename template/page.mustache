@@ -9,39 +9,82 @@
 		<div class="col-p-5 col-mm-10">
         <ul class="hashtag-list">
             {{#links}}
-                <a href="#{{.}}" class="hashtag"><li>{{.}}</li></a>
+                <a href="#{{.}}" class="hashtag">
+					<li>{{.}}</li>
+				</a>
             {{/links}}
         </ul>
 		</div>
         <div class="col-p-5 col-mm-10">
 				<div class="phone-contacts">
-					<h3>Телефоны специального назначения</h3>
-					<p>Cправочная: <a href="tel:+78362686809"><code>68-68-09</code></a></p>
-					<p>Ответственный дежурный по университету: <a href="tel:+78362687801"><code>68-78-01</code></a></p>
-					<p>Дежурный слесарь: <a href="tel:+78362686844"><code>68-68-44</code></a></p>
+					<h3>
+						Телефоны специального назначения
+					</h3>
 					<p>
-						Дежурные электрики:<br>
-						<span class="fz13">Учебный корпус №1</span> — <a href="tel:+78362686017"><code>68-60-17</code></a><br>
-						<span class="fz13">Учебный корпус №3</span> — <a href="tel:+78362682808"><code>68-28-08</code></a>
+						Cправочная:
+						<a href="tel:+78362686809">
+							<code>
+								68-68-09
+							</code>
+						</a>
+					</p>
+					<p>
+						Ответственный дежурный по университету:
+						<a href="tel:+78362687801">
+							<code>
+								68-78-01
+							</code>
+						</a>
+					</p>
+					<p>
+						Дежурный слесарь:
+						<a href="tel:+78362686844">
+							<code>
+								68-68-44
+							</code>
+						</a>
+					</p>
+					<p>
+						Дежурные электрики:
+						<br>
+						<span class="fz13">
+							Учебный корпус №1
+						</span> 
+						— 
+						<a href="tel:+78362686017">
+							<code>
+								68-60-17
+							</code>
+						</a>
+						<br>
+						<span class="fz13">
+							Учебный корпус №3
+						</span> 
+						— 
+						<a href="tel:+78362682808">
+							<code>
+								68-28-08
+							</code>
+						</a>
 					</p>
 				</div>
 			</div>
-	</div>	
-	
+	</div>
+
 	<form>
 		<div class="box">
 			<div class="container_searching_form">
-			  <input class="place_for_search" type="text" id="text-to-find" value="" placeholder="Поиск по справочнику..." oninput="javascript: FindOnPage('text-to-find',true, false); return false;">
-			  <input class="button_for_search_hidden" type="submit" onclick="javascript: FindOnPage('text-to-find',true, true); return false;" value="Найти на странице" title="Найти на странице">
-			  <div><img class="button_for_search" onclick="javascript: FindOnPage('text-to-find',true, true); return false;" title="Найти на странице"></div>
-			  <div><img class="button_for_turn_back" onclick="javascript: FindOnPage('text-to-find',false, true); return false;" title="Очистить"></div>
+				<input class="place_for_search" type="text" id="text-to-find" value="" placeholder="Поиск по справочнику..." oninput="javascript: FindOnPage('text-to-find',true, false); return false;">
+				<input class="button_for_search_hidden" type="submit" onclick="javascript: FindOnPage('text-to-find',true, true); return false;" value="Найти на странице" title="Найти на странице">
+				<div><img class="button_for_search" onclick="javascript: FindOnPage('text-to-find',true, true); return false;" title="Найти на странице"></div>
+				<div><img class="button_for_turn_back" onclick="javascript: FindOnPage('text-to-find',false, true); return false;" title="Очистить"></div>
 			</div>
 		</div>
 	</form>
-		
+
 	<script>
 	var input;
-	
+
 	function unhide_li(elem) {
 		while (elem.tagName.toUpperCase() != "LI")
 			elem = elem.parentNode;
@@ -56,7 +99,7 @@
 		if(input.length<1 && status==true && submitted==true) {
 			alert('Для поиска вы должны ввести один или более символов');
 		}
-			
+
 			if(input.length>=1 && status){
 				let nonhidden = document.querySelectorAll('.section');
 				for (let elem of nonhidden)
@@ -66,7 +109,7 @@
 					for (let inner_elem of inner_elems)
 						inner_elem.classList.add('hidden_item');
 				}
-				
+
 				let managers = document.querySelectorAll('.manager');
 				for (let elem of managers)
 				{
@@ -78,7 +121,7 @@
 						found = true;
 					}
 				}
-				
+
 				if (!found)
 				{
 					let names = document.querySelectorAll('.name');
@@ -93,7 +136,7 @@
 						}
 					}
 				}
-				
+
 				if (!found)
 				{
 					let employees = document.querySelectorAll('.employee');
@@ -108,7 +151,7 @@
 						}
 					}
 				}
-				
+
 				if (!found && submitted == true)
 				{
 					let hidden = document.querySelectorAll('.hidden_item');
@@ -117,16 +160,16 @@
 					alert('Совпадения не найдены!');
 				}
 		}
-		
-		if(!status || (submitted == true && found == false)) { 
+
+		if(!status || (submitted == true && found == false)) {
 			let hidden = document.querySelectorAll('.hidden_item');
 			for (let elem of hidden)
 				elem.classList.remove('hidden_item');
-			document.getElementById(name).value = ''; 
+			document.getElementById(name).value = '';
 		}
 	}
 	</script>
-	
+
         <ul class="tree">
             {{#data}}
                 {{{.}}}
