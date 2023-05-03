@@ -44,7 +44,10 @@ $links = [];
 foreach($tree as &$department) {
     $department->Childs = search_childs($department, $department_collection);
     $dep = new Department($department);
-    $links[] = $dep->get_name();
+    $links[] = [
+        'depId' => $dep->get_uniq_id(),
+        'depName' => $dep->get_name()
+    ];
     $html[] = $dep->get_html($m);
 }
 

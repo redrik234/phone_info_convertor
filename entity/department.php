@@ -8,6 +8,7 @@ use Entity\Person;
 
 class Department {
 
+    private ?string $uniq_id = null;
     private string $name = '';
     private ?string $code = '';
     private ?string $head_department = '';
@@ -20,6 +21,7 @@ class Department {
     private ?Person $manager = null;
 
     public function __construct(stdClass $info) {
+        $this->uniq_id = uniqid('dep_');
         $this->name = $info->DepartmentName;
         $this->code = $info->DepartmentCode;
         $this->head_department = $info->HeadDepartment;
@@ -89,6 +91,7 @@ class Department {
 
     public function get_template_data() {
         return [
+            'uniqDepId' => $this->uniq_id,
             'name' => $this->name,
             'code' => $this->code,
             'isPrintContMsg' => $this->email || $this->phone,
@@ -104,7 +107,7 @@ class Department {
     }
 
     public function is_empty() {
-        if (!$this->phone && !$this->email 
+        if (!$this->phone && !$this->email
         && !$this->location && !$this->manager
         && empty($this->employees
         && empty($this->childs))) {
@@ -119,6 +122,10 @@ class Department {
 
     public function get_childs() {
         return $this->childs;
+    }
+
+    public function get_uniq_id() {
+        return $this->uniq_id;
     }
 
     public function get_name() {
