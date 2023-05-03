@@ -91,6 +91,7 @@ class Department {
         return [
             'name' => $this->name,
             'code' => $this->code,
+            'isPrintContMsg' => $this->email || $this->phone,
             'headDepartment' => $this->head_department,
             'email' => $this->email,
             'phone' => $this->phone,

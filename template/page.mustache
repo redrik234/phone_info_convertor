@@ -122,33 +122,27 @@
 					}
 				}
 
-				if (!found)
+				let names = document.querySelectorAll('.name');
+				for (let elem of names)
 				{
-					let names = document.querySelectorAll('.name');
-					for (let elem of names)
+					if (elem.innerText.toUpperCase().indexOf(input.toUpperCase()) >= 0)
 					{
-						if (elem.innerText.toUpperCase().indexOf(input.toUpperCase()) >= 0)
-						{
-							let li_elem = unhide_li(elem);
-							while (!li_elem.parentNode.classList.contains('tree'))
-								li_elem = unhide_li(li_elem.parentNode);
-							found = true;
-						}
+						let li_elem = unhide_li(elem);
+						while (!li_elem.parentNode.classList.contains('tree'))
+							li_elem = unhide_li(li_elem.parentNode);
+						found = true;
 					}
 				}
 
-				if (!found)
+				let employees = document.querySelectorAll('.employee');
+				for (let elem of employees)
 				{
-					let employees = document.querySelectorAll('.employee');
-					for (let elem of employees)
+					if (elem.innerText.toUpperCase().indexOf(input.toUpperCase()) >= 0)
 					{
-						if (elem.innerText.toUpperCase().indexOf(input.toUpperCase()) >= 0)
-						{
-							let li_elem = unhide_li(elem);
-							while (!li_elem.parentNode.classList.contains('tree'))
-								li_elem = unhide_li(li_elem.parentNode);
-							found = true;
-						}
+						let li_elem = unhide_li(elem);
+						while (!li_elem.parentNode.classList.contains('tree'))
+							li_elem = unhide_li(li_elem.parentNode);
+						found = true;
 					}
 				}
 

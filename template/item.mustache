@@ -1,15 +1,16 @@
 <li class="section">
     <div class="name" id="{{name}}">{{name}}</div>
-    <div class="depinfo">
-            {{#location}}
-                Местонахождение:
-                <div class="label">
-                    {{location}}
-                </div>
-            {{/location}}
-	</div>
-	<div class="depinfo">
-            Контактная информация:
+    {{#location}}
+        <div class="depinfo">
+            Местонахождение:
+            <div class="label">
+                {{location}}
+            </div>
+        </div>
+    {{/location}}
+    {{#isPrintContMsg}}
+	    <div class="depinfo">
+                Контактная информация:
             {{#phone}}
                 <div class="label">
                     <a href="tel:+7{{phone}}" class="no-link">{{phone}}</a>
@@ -20,7 +21,8 @@
                     <a href="mailto:{{email}}" class="no-link">{{email}}</a>
                 </div>
             {{/email}}
-    </div>
+        </div>
+    {{/isPrintContMsg}}
     {{#manager}}
 		<div>
 			<div class="manager">
@@ -54,33 +56,35 @@
         </div>
     {{/manager}}
     {{#employees}}
-        <div class="employee">
-            {{name}},
-        </div>
-        <div class="employeejob">
-            {{position}}
-        </div>
-        {{#add_info}}
-            <div class="employeejob">
-                ({{add_info}})
+        <div>
+            <div class="employee">
+                {{name}},
             </div>
-        {{/add_info}}
-        <div class="info_employee">
-            {{#location}}
-                <div class="label">
-                    {{location}}
+            <div class="employeejob">
+                {{position}}
+            </div>
+            {{#add_info}}
+                <div class="employeejob">
+                    ({{add_info}})
                 </div>
-            {{/location}}
-            {{#phone}}
-                <div class="label">
-                    <a href="tel:+7{{phone}}" class="no-link">{{phone}}</a>
-                </div>
-            {{/phone}}
-            {{#email}}
-                <div class="label">
-                    <a href="mailto:{{email}}" class="no-link">{{email}}</a>
-                </div>
-            {{/email}}
+            {{/add_info}}
+            <div class="info_employee">
+                {{#location}}
+                    <div class="label">
+                        {{location}}
+                    </div>
+                {{/location}}
+                {{#phone}}
+                    <div class="label">
+                        <a href="tel:+7{{phone}}" class="no-link">{{phone}}</a>
+                    </div>
+                {{/phone}}
+                {{#email}}
+                    <div class="label">
+                        <a href="mailto:{{email}}" class="no-link">{{email}}</a>
+                    </div>
+                {{/email}}
+            </div>
         </div>
     {{/employees}}
 </li>
