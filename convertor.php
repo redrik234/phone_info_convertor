@@ -22,6 +22,15 @@ $m = new Mustache_Engine([
     'loader' => new Mustache_Loader_FilesystemLoader(dirname(__FILE__) . '/template')
 ]);
 
+$keywords = [
+    'ректорат',
+    'институт',
+    'факультет',
+    'департамент',
+    'управление',
+    'филиал'
+];
+
 $json_content = file_get_contents($options['i']);
 
 $json = json_decode($json_content);
@@ -44,11 +53,16 @@ $links = [];
 foreach($tree as &$department) {
     $department->Childs = search_childs($department, $department_collection);
     $dep = new Department($department);
-    $links[] = [
-        'depId' => $dep->get_uniq_id(),
-        'depName' => $dep->get_name()
-    ];
     $html[] = $dep->get_html($m);
+    foreach ($keywords as $word) {
+        if (mb_strpos(mb_strtolower($dep->get_name()), $word) !== false) {
+            $links[] = [
+                'depId' => $dep->get_uniq_id(),
+                'depName' => $dep->get_name()
+            ];
+            break;
+        }
+    }
 }
 
 $output = null;
